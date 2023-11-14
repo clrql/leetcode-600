@@ -1,0 +1,17 @@
+
+  # daily-leads-and-partners
+
+  ```pythondata
+  import pandas as pd
+
+def daily_leads_and_partners(daily_sales: pd.DataFrame) -> pd.DataFrame:
+    # Group by 'date_id', 'make_name', and calculate the number of distinct lead_ids and partner_ids
+    result = daily_sales.groupby(['date_id', 'make_name']).agg(
+        unique_leads=pd.NamedAgg(column='lead_id', aggfunc='nunique'),
+        unique_partners=pd.NamedAgg(column='partner_id', aggfunc='nunique')
+    ).reset_index()
+    
+    return result
+
+  ```
+  
